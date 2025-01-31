@@ -46,7 +46,7 @@ public partial struct TurretLMovment : ISystem
         {
             _nearEntity = (Vector3)enemyPos.ValueRO.Position;
 
-            var dir = ((Vector3)enemyPos.ValueRO.Position - (Vector3)turretPos.ValueRO.Position).normalized;
+            var dir = (_nearEntity - (Vector3)turretPos.ValueRO.Position).normalized;
             Quaternion rotation = Quaternion.LookRotation(dir, Vector3.up);
             var tranRWRotat = SystemAPI.GetComponentRW<LocalTransform>(turretComp.ValueRO.turretRotation);
 
