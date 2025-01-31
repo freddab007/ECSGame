@@ -592,7 +592,7 @@ MonoBehaviour:
   spawnBall: {fileID: 575775513}
   target: {fileID: 2624622778255292639}
   BallSpawnInterval: 100
-  NumBallsSpawn: 10
+  NumBallsSpawn: 100
   ImpactStrength: 5
   SpawnBounds:
     m_Center: {x: 0, y: 0, z: 0}
