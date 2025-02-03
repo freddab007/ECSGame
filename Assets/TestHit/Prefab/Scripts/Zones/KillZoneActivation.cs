@@ -32,22 +32,21 @@ namespace KillZoneCol
                 return;
             }
 
-            _ecb.DestroyEntity(enemyEntity);
+            SystemAPI.GetComponentRW<Enemy>(enemyEntity).ValueRW.isDead = true;
         }
 
         [BurstCompile]
         public void OnUpdate(ref SystemState _state)
         {
-                var sim = SystemAPI.GetSingleton<SimulationSingleton>().AsSimulation();
-                sim.FinalJobHandle.Complete();
+            var sim = SystemAPI.GetSingleton<SimulationSingleton>().AsSimulation();
+            sim.FinalJobHandle.Complete();
 
-                var ecb = new EntityCommandBuffer(Allocator.Temp);
-                foreach (var _triggerEvent in sim.TriggerEvents)
-                {
-                    EnemyDetection(_triggerEvent, ecb, ref _state);
+            var ecb = new EntityCommandBuffer(Allocator.Temp);
+            foreach (var _triggerEvent in sim.TriggerEvents)
+            {
+                EnemyDetection(_triggerEvent, ecb, ref _state);
 
-                }
-                ecb.Playback(_state.EntityManager);
+            }
         }
     }
 }

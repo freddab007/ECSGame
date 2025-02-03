@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemySpawnerAuthoring : MonoBehaviour
 {
     public GameObject BallPrefab;
+    public Transform targetSpawn;
 
     public float BallSpawnInterval = 4f;
     public int NumBallsSpawn = 10;
@@ -22,6 +23,7 @@ public class EnemySpawnerAuthoring : MonoBehaviour
                 BallPrefab = GetEntity(authoring.BallPrefab, TransformUsageFlags.Dynamic),
                 SpawnBoundsMax = authoring.SpawnBounds.max,
                 SpawnBoundsMin = authoring.SpawnBounds.min,
+                TargetSpawn = authoring.targetSpawn.position,
                 BallSpawnHeight = authoring.BallSpawnHeight,
                 BallSpawnInterval = authoring.BallSpawnInterval,
                 NumBallsSpawn = authoring.NumBallsSpawn,
@@ -37,6 +39,7 @@ public struct EnemySpawnerComp : IComponentData
     public Entity BallPrefab;
     public float3 SpawnBoundsMax;
     public float3 SpawnBoundsMin;
+    public float3 TargetSpawn;
     public float BallSpawnHeight;
     public float BallSpawnInterval;
     public float TimerSpawner;
